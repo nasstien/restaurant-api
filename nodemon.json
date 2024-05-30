@@ -1,0 +1,5 @@
+{
+    "watch": ["src"],
+    "ext": "ts",
+    "exec": "ts-node --require tsconfig-paths/register"
+}
