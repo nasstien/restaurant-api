@@ -9,12 +9,12 @@ import rateLimit from 'express-rate-limit';
 
 import authRouter from '@routes/auth';
 import userRouter from '@routes/user';
-import menuRouter from '@routes/menuItem';
+import menuRouter from '@routes/menu-item';
 import tableRouter from '@routes/table';
 import APIError from '@utils/classes/APIError';
 import { getAllReservations } from '@controllers/reservation';
 import { getAllOrders } from '@controllers/order';
-import { errorHandler } from '@middleware/errorHandler';
+import { errorHandler } from '@middleware/error-handler';
 import { sanitize, disableCache } from '@middleware/middleware';
 import { protect, checkUserRole } from '@middleware/auth';
 

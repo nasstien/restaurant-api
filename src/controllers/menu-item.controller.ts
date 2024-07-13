@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
 import { getAll, getOne, createOne, updateOne, deleteOne, search } from '@middleware/controllers';
-import MenuItem from '@models/menuItem';
+import MenuItem from '@models/menu-item';
 
 export const searchMenuItems = search(MenuItem, ['name', 'description', 'category', 'ingredients', 'tags']);
 export const getAllMenuItems = getAll(MenuItem, { path: 'reviews' });

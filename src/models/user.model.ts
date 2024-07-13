@@ -3,6 +3,7 @@ import crypto from 'crypto';
 import validator from 'validator';
 import { Model, Schema, model } from 'mongoose';
 import { IUser } from 'IUser';
+import { Role } from '../enums/user.enum';
 import { isConfirmedPassword } from '@utils/validators';
 
 const UserSchema = new Schema<IUser>(
@@ -48,10 +49,10 @@ const UserSchema = new Schema<IUser>(
         role: {
             type: String,
             enum: {
-                values: ['customer', 'employee', 'admin'],
+                values: Object.values(Role),
                 message: 'Invalid value provided. Allowed values for role: customer, employee, admin.',
             },
-            default: 'customer',
+            default: Role.customer,
         },
         password: {
             type: String,

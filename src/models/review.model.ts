@@ -2,7 +2,7 @@ import { Model, Query, Schema, model } from 'mongoose';
 import { IReview } from 'IReview';
 import { isValidId } from '@utils/validators';
 import User from './user.model';
-import MenuItem from './menuItem.model';
+import MenuItem from './menu-item.model';
 
 const ReviewSchema = new Schema<IReview>(
     {

@@ -4,6 +4,7 @@
     "description": "",
     "main": "server.ts",
     "scripts": {
+        "start": "set NODE_ENV=development && nodemon src/server.ts",
         "start:dev": "set NODE_ENV=development && nodemon src/server.ts",
         "start:prod": "set NODE_END=production && nodemon src/server.ts"
     },

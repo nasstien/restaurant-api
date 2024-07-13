@@ -6,7 +6,7 @@ import {
     getMenuItem,
     updateMenuItem,
     deleteMenuItem,
-} from '@controllers/menuItem';
+} from '@controllers/menu-item';
 import { protect, checkUserRole } from '@middleware/auth';
 import reviewRouter from '@routes/review';
 

@@ -1,12 +1,11 @@
 import jwt from 'jsonwebtoken';
-import { Request, Response, NextFunction } from 'express';
 import { IAuthRequest } from 'IAuthRequest';
+import { Request, Response, NextFunction } from 'express';
 import { handleAsyncErrors } from '@utils/utils';
 import APIError from '@utils/classes/APIError';
 import User from '@models/user';
 
 export const protect = handleAsyncErrors(async (req, res, next) => {
-    const authReq = req as IAuthRequest;
     const token = req.cookies.session;
 
     if (!token) {
@@ -22,15 +21,13 @@ export const protect = handleAsyncErrors(async (req, res, next) => {
         return next(new APIError(401, 'The user recently changed the password. Please login again.'));
     }
 
-    authReq.user = user;
+    (req as IAuthRequest).user = user;
     next();
 });
 
 export const checkUserRole = (...allowedRoles: string[]) => {
     return (req: Request, res: Response, next: NextFunction) => {
-        const authReq = req as IAuthRequest;
-
-        if (!allowedRoles.includes(authReq.user.role)) {
+        if (!allowedRoles.includes((req as IAuthRequest).user!.role)) {
             return next(new APIError(403, "You don't have permissions to access this endpoint."));
         }
         next();

@@ -1,5 +1,6 @@
 import { Model, Query, Schema, model } from 'mongoose';
 import { ITable } from 'ITable';
+import { TableStatus, TableLocation } from '@enums/table.enum';
 import { isValidId } from '@utils/validators';
 import Reservation from './reservation.model';
 
@@ -17,15 +18,15 @@ const TableSchema = new Schema<ITable>(
         status: {
             type: String,
             enum: {
-                values: ['reserved', 'occupied', 'available'],
+                values: Object.values(TableStatus),
                 message: 'Invalid value provided. Allowed values for status: reserved, occupied, available.',
             },
-            default: 'available',
+            default: TableStatus.available,
         },
         location: {
             type: String,
             enum: {
-                values: ['indoor', 'outdoor', 'private room'],
+                values: Object.values(TableLocation),
             },
             required: [true, 'Location is required.'],
         },

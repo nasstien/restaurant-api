@@ -2,6 +2,7 @@ import { Model, Query, Schema, model } from 'mongoose';
 import { IPayment } from 'IPayment';
 import { IMenuItem } from 'IMenuItem';
 import { isValidId } from '@utils/validators';
+import { PaymentMethod, PaymentStatus } from '@enums/payment.enum';
 import User from './user.model';
 import Order from './order.model';
 
@@ -32,18 +33,18 @@ const PaymentSchema = new Schema<IPayment>(
         paymentMethod: {
             type: String,
             enum: {
-                values: ['cash', 'card'],
+                values: Object.values(PaymentMethod),
             },
             required: [true, 'Payment method is required.'],
         },
         status: {
             type: String,
             enum: {
-                values: ['pending', 'authorized', 'completed', 'failed', 'cancelled', 'refunded'],
+                values: Object.values(PaymentStatus),
                 message:
                     'Invalid value provided. Allowed values for status: pending, authorized, completed, failed, cancelled, refunded.',
             },
-            default: 'pending',
+            default: PaymentStatus.pending,
         },
         totalAmount: Number,
     },

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { getMenuItemReviews, createReview, getReview, updateReview, deleteReview } from '@controllers/review';
 import { setUserId } from '@controllers/user';
-import { setItemId } from '@controllers/menuItem';
+import { setItemId } from '@controllers/menu-item';
 import { protect } from '@middleware/auth';
 
 const router = Router({ mergeParams: true });

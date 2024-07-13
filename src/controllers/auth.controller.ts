@@ -45,8 +45,7 @@ export const logIn = handleAsyncErrors(async (req, res, next) => {
 });
 
 export const logOut = handleAsyncErrors(async (req, res, next) => {
-    const authReq = req as IAuthRequest;
-    authReq.user = undefined;
+    (req as IAuthRequest).user = undefined;
 
     res.clearCookie('session');
     sendSuccessResponse(res, 200, undefined, 'You have successfully logged out.');
@@ -115,14 +114,13 @@ export const resetPassword = handleAsyncErrors(async (req, res, next) => {
 });
 
 export const updatePassword = handleAsyncErrors(async (req, res, next) => {
-    const authReq = req as IAuthRequest;
     const { currentPassword, newPassword, newPasswordConfirm } = req.body;
 
     if (!currentPassword || !newPassword || !newPasswordConfirm) {
         return next(new APIError(400, 'Current password, new password, and password confirmation are required.'));
     }
 
-    const user = await User.findById(authReq.user.id).select('+password');
+    const user = await User.findById((req as IAuthRequest).user!.id).select('+password');
 
     if (!user) {
         return next(new APIError(404, 'User not found.'));
@@ -162,8 +160,7 @@ export const updateUserRole = handleAsyncErrors(async (req, res, next) => {
 });
 
 export const deleteAccount = handleAsyncErrors(async (req, res, next) => {
-    const authReq = req as IAuthRequest;
-    const user = await User.findById(authReq.user.id);
+    const user = await User.findById((req as IAuthRequest).user!.id);
 
     if (!user) {
         return next(new APIError(404, 'User not found.'));
@@ -172,7 +169,7 @@ export const deleteAccount = handleAsyncErrors(async (req, res, next) => {
     user.isActive = false;
     await user.save();
 
-    authReq.user = undefined;
+    (req as IAuthRequest).user = undefined;
 
     res.clearCookie('session');
     sendSuccessResponse(res, 200, undefined, 'Account has been successfully deleted.');

@@ -1,9 +1,10 @@
 import { Model, Query, Schema, model } from 'mongoose';
 import { IOrder } from 'IOrder';
+import { OrderStatus } from '@enums/order.enum';
 import { isValidId, isValidDate } from '@utils/validators';
 import User from './user.model';
 import Table from './table.model';
-import MenuItem from './menuItem.model';
+import MenuItem from './menu-item.model';
 
 const OrderSchema = new Schema<IOrder>(
     {
@@ -64,20 +65,11 @@ const OrderSchema = new Schema<IOrder>(
         status: {
             type: String,
             enum: {
-                values: [
-                    'received',
-                    'confirmed',
-                    'cooking',
-                    'ready for pickup',
-                    'out for delivery',
-                    'delivered',
-                    'cancelled',
-                    'delayed',
-                ],
+                values: Object.values(OrderStatus),
                 message:
                     'Invalid value provided. Allowed values for status: received, confirmed, cooking, ready for pickup, out for delivery, delivered, cancelled, delayed.',
             },
-            default: 'received',
+            default: OrderStatus.received,
         },
         deliveryAddress: {
             type: {

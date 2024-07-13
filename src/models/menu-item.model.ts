@@ -2,6 +2,7 @@ import validator from 'validator';
 import { Model, Schema, model } from 'mongoose';
 import { IMenuItem } from 'IMenuItem';
 import { IReview } from 'IReview';
+import { MenuItemTag, MenuItemStatus } from '@enums/menu-item.enum';
 
 const MenuItemSchema = new Schema<IMenuItem>(
     {
@@ -33,7 +34,7 @@ const MenuItemSchema = new Schema<IMenuItem>(
         tags: {
             type: [String],
             enum: {
-                values: ['vegan', 'vegetarian', 'gluten-free', 'dairy-free', 'nut-free', 'low-carb'],
+                values: Object.values(MenuItemTag),
                 message:
                     'Invalid value provided. Allowed values for tags: vegan, vegetarian, gluten-free, dairy-free, nut-free, low-carb.',
             },
@@ -58,7 +59,7 @@ const MenuItemSchema = new Schema<IMenuItem>(
         status: {
             type: String,
             enum: {
-                values: ['best-selling', 'featured', "chef's special", 'new'],
+                values: Object.values(MenuItemStatus),
                 message:
                     "Invalid value provided. Allowed values for status: best-selling, featured, chef's special, new.",
             },

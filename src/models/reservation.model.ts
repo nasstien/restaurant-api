@@ -1,5 +1,6 @@
 import { Model, Query, Schema, model } from 'mongoose';
 import { IReservation } from 'IReservation';
+import { ReservationStatus } from '@enums/reservation.enum';
 import { isValidId, isValidDate } from '@utils/validators';
 import User from './user.model';
 import Table from './table.model';
@@ -41,11 +42,11 @@ const ReservationSchema = new Schema<IReservation>(
         status: {
             type: String,
             enum: {
-                values: ['pending', 'confirmed', 'cancelled', 'no-show', 'rescheduled'],
+                values: Object.values(ReservationStatus),
                 message:
                     'Invalid value provided. Allowed values for status: pending, confirmed, cancelled, no-show, rescheduled.',
             },
-            default: 'pending',
+            default: ReservationStatus.pending,
         },
         depositAmount: {
             type: Number,
