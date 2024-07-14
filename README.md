@@ -48,6 +48,17 @@ npm run start:dev
 | `/api/users/update-password`      | Endpoint for updating user passwords.                                                                                         |
 | `/api/users/delete-account`       | Endpoint for handling deactivation of user accounts.                                                                          |
 
+#### Statistics Endpoints
+
+| Endpoint                               | Description                                                                               |
+| -------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `/api/stats/users/role`                | Endpoint for getting the count of users grouped by their roles.                           |
+| `/api/stats/users/activity`            | Endpoint for retrieving the count of active and inactive users.                           |
+| `/api/stats/income-per-month/:month`   | Endpoint for getting total income for a specific month or all months.                     |
+| `/api/stats/top-selling-items`         | Endpoint for retrieving the top 5 best-selling menu items.                                |
+| `/api/stats/most-reserved-tables`      | Endpoint for getting the top 5 most reserved tables.                                      |
+| `/api/stats/review-percentage/:itemId` | Endpoint for calculating the percentage of positive and negative reviews for a menu item. |
+
 ## Authorization
 
 The API uses **JSON Web Tokens (JWT)** for authentication. After successful login, a token is generated and stored in a cookie.
