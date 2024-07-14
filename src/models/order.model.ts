@@ -1,10 +1,10 @@
 import { Model, Query, Schema, model } from 'mongoose';
 import { IOrder } from 'IOrder';
-import { OrderStatus } from '@enums/order.enum';
+import { OrderStatus } from '@enums/order';
 import { isValidId, isValidDate } from '@utils/validators';
-import User from './user.model';
-import Table from './table.model';
-import MenuItem from './menu-item.model';
+import User from '@models/user';
+import Table from '@models/table';
+import MenuItem from '@models/menu-item';
 
 const OrderSchema = new Schema<IOrder>(
     {

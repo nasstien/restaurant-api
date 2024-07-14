@@ -11,12 +11,14 @@ import authRouter from '@routes/auth';
 import userRouter from '@routes/user';
 import menuRouter from '@routes/menu-item';
 import tableRouter from '@routes/table';
+import statsRouter from '@routes/stats';
 import APIError from '@utils/classes/APIError';
 import { getAllReservations } from '@controllers/reservation';
 import { getAllOrders } from '@controllers/order';
 import { errorHandler } from '@middleware/error-handler';
 import { sanitize, disableCache } from '@middleware/middleware';
 import { protect, checkUserRole } from '@middleware/auth';
+import { Role } from '@enums/user';
 
 const app = express();
 
@@ -31,6 +33,7 @@ app.use(helmet());
 app.use(hpp());
 app.use(sanitize());
 app.use(disableCache());
+
 app.use(
     cors({
         origin: [`${process.env.FRONTEND_URL}`],
@@ -38,6 +41,7 @@ app.use(
         credentials: true,
     }),
 );
+
 app.use(
     rateLimit({
         max: 100,
@@ -52,8 +56,10 @@ app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api/menu', menuRouter);
 app.use('/api/tables', tableRouter);
-app.get('/api/reservations', protect, checkUserRole('employee', 'admin'), getAllReservations);
-app.get('/api/orders', protect, checkUserRole('employee', 'admin'), getAllOrders);
+app.use('/api/stats', statsRouter);
+
+app.get('/api/reservations', protect, checkUserRole(Role.employee, Role.admin), getAllReservations);
+app.get('/api/orders', protect, checkUserRole(Role.employee, Role.admin), getAllOrders);
 
 app.use('*', (req, res, next) => {
     return next(new APIError(400, "The endpoint you're trying to access doesn't exist."));

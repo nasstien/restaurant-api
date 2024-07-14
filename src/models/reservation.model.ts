@@ -1,9 +1,9 @@
 import { Model, Query, Schema, model } from 'mongoose';
 import { IReservation } from 'IReservation';
-import { ReservationStatus } from '@enums/reservation.enum';
+import { ReservationStatus } from '@enums/reservation';
 import { isValidId, isValidDate } from '@utils/validators';
-import User from './user.model';
-import Table from './table.model';
+import User from '@models/user';
+import Table from '@models/table';
 
 const ReservationSchema = new Schema<IReservation>(
     {

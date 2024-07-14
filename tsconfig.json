@@ -12,7 +12,7 @@
         "paths": {
             "*": ["node_modules/*", "src/types/*", "src/types/models/*"],
             "@controllers/*": ["src/controllers/*.controller.ts"],
-            "@enums/*": ["src/enums/*.ts"],
+            "@enums/*": ["src/enums/*.enum.ts"],
             "@models/*": ["src/models/*.model.ts"],
             "@routes/*": ["src/routes/*.routes.ts"],
             "@middleware/*": ["src/middleware/*"],

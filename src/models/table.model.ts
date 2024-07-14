@@ -1,8 +1,8 @@
 import { Model, Query, Schema, model } from 'mongoose';
 import { ITable } from 'ITable';
-import { TableStatus, TableLocation } from '@enums/table.enum';
+import { TableStatus, TableLocation } from '@enums/table';
 import { isValidId } from '@utils/validators';
-import Reservation from './reservation.model';
+import Reservation from '@models/reservation';
 
 const TableSchema = new Schema<ITable>(
     {

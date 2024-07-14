@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import validator from 'validator';
 import { Model, Schema, model } from 'mongoose';
 import { IUser } from 'IUser';
-import { Role } from '../enums/user.enum';
+import { Role } from '@enums/user';
 import { isConfirmedPassword } from '@utils/validators';
 
 const UserSchema = new Schema<IUser>(

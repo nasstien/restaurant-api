@@ -2,9 +2,9 @@ import { Model, Query, Schema, model } from 'mongoose';
 import { IPayment } from 'IPayment';
 import { IMenuItem } from 'IMenuItem';
 import { isValidId } from '@utils/validators';
-import { PaymentMethod, PaymentStatus } from '@enums/payment.enum';
-import User from './user.model';
-import Order from './order.model';
+import { PaymentMethod, PaymentStatus } from '@enums/payment';
+import User from '@models/user';
+import Order from '@models/order';
 
 const PaymentSchema = new Schema<IPayment>(
     {

@@ -2,7 +2,7 @@ import validator from 'validator';
 import { Model, Schema, model } from 'mongoose';
 import { IMenuItem } from 'IMenuItem';
 import { IReview } from 'IReview';
-import { MenuItemTag, MenuItemStatus } from '@enums/menu-item.enum';
+import { MenuItemTag, MenuItemStatus } from '@enums/menu-item';
 
 const MenuItemSchema = new Schema<IMenuItem>(
     {
