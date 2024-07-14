@@ -31,6 +31,12 @@ Development mode:
 npm run start:dev
 ```
 
+##### Run with Docker:
+
+```sh
+docker-compose up
+```
+
 ## Endpoints
 
 | Endpoint                          | Description                                                                                                                   |
